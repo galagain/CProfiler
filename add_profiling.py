@@ -86,7 +86,7 @@ def add_profiling_macro(file_path: str, macro_type: str) -> None:
 
 def process_directory(directory: str, macro_type: str) -> None:
     """
-    Processes all .cpp and .h files in the specified directory,
+    Processes all .cpp, .cc and .h files in the specified directory,
     adding profiling macros to their functions.
 
     Args:
@@ -95,7 +95,7 @@ def process_directory(directory: str, macro_type: str) -> None:
     """
     for root, _, files in os.walk(directory):
         for file in files:
-            if file.endswith(".cpp") or file.endswith(".h"):
+            if file.endswith(".cpp") or file.endswith(".h") or file.endswith(".cc"):
                 file_path = os.path.join(root, file)
                 print(f"Processing file: {file_path}")
                 add_profiling_macro(file_path, macro_type)

@@ -119,7 +119,7 @@ The script uses default values for the directory and macro type but allows custo
 By default, the script processes the ./src directory and adds the PROFILE_FUNCTION macro:
 
 ```bash
-python add_profiling_macro.py
+python add_profiling.py
 ```
 
 ### Customizing the Directory and Macro Type
@@ -132,19 +132,19 @@ You can specify a different directory and/or macro type using the following opti
 1. Process a different directory:
 
 ```bash
-python add_profiling_macro.py -d ./other_directory
+python add_profiling.py -d ./other_directory
 ```
 
 2. Use PROFILE_FUNCTION_TO_FILE instead of PROFILE_FUNCTION:
 
 ```bash
-python add_profiling_macro.py -m PROFILE_FUNCTION_TO_FILE
+python add_profiling.py -m PROFILE_FUNCTION_TO_FILE
 ```
 
 3. Specify both a different directory and a different macro type:
 
 ```bash
-python add_profiling_macro.py -d ./other_directory -m PROFILE_FUNCTION_TO_FILE
+python add_profiling.py -d ./other_directory -m PROFILE_FUNCTION_TO_FILE
 ```
 
 ## Conclusion
