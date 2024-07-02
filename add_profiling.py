@@ -1,7 +1,7 @@
-import os  # Imports the os module for interacting with the operating system
-import re  # Imports the re module for regular expressions
-import argparse  # Imports the argparse module for parsing command-line arguments
-
+import os
+import re
+import argparse
+import codecs
 
 def add_profiling_macro(file_path: str, macro_type: str) -> None:
     """
@@ -11,9 +11,9 @@ def add_profiling_macro(file_path: str, macro_type: str) -> None:
         file_path (str): The path to the file to be processed.
         macro_type (str): The type of profiling macro to add (PROFILE_FUNCTION or PROFILE_FUNCTION_TO_FILE).
     """
-    # Read the file contents
-    with open(file_path, "r") as file:
-        lines: list[str] = file.readlines()
+    # Read the file contents with UTF-8 encoding and handle BOM
+    with codecs.open(file_path, "r", "utf-8-sig") as file:
+        lines = file.readlines()
 
     # Regular expressions for detecting function definitions and declarations
     func_def_regex = re.compile(r"^\s*[\w:~<>]+\s+[\w:~<>]+\s*\(.*\)\s*(const)?\s*{")
@@ -24,20 +24,20 @@ def add_profiling_macro(file_path: str, macro_type: str) -> None:
     )
 
     # Check if the file already includes "Timer.h"
-    include_present: bool = any('#include "Timer.h"' in line for line in lines)
+    include_present = any('#include "Timer.h"' in line for line in lines)
 
-    new_lines: list[str] = []
+    new_lines = []
     # Add the include for "Timer.h" if not present and not the Timer.h file itself
     if not include_present and not file_path.endswith("Timer.h"):
         new_lines.append('#include "Timer.h"\n')
 
-    inside_function: bool = False
-    brace_level: int = 0
-    profile_function_added: bool = False
+    inside_function = False
+    brace_level = 0
+    profile_function_added = False
 
-    i: int = 0
+    i = 0
     while i < len(lines):
-        line: str = lines[i]
+        line = lines[i]
 
         if not inside_function:
             if func_def_regex.match(line):
@@ -79,10 +79,9 @@ def add_profiling_macro(file_path: str, macro_type: str) -> None:
 
         i += 1
 
-    # Write the modified contents back to the file
-    with open(file_path, "w") as file:
+    # Write the modified contents back to the file with UTF-8 encoding without BOM
+    with codecs.open(file_path, "w", "utf-8") as file:
         file.writelines(new_lines)
-
 
 def process_directory(directory: str, macro_type: str) -> None:
     """
@@ -99,7 +98,6 @@ def process_directory(directory: str, macro_type: str) -> None:
                 file_path = os.path.join(root, file)
                 print(f"Processing file: {file_path}")
                 add_profiling_macro(file_path, macro_type)
-
 
 if __name__ == "__main__":
     # Set up argument parser
