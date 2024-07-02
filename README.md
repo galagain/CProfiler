@@ -46,6 +46,45 @@ Run the executable:
 ./MyExecutable
 ```
 
+### Automating the Build and Run Process
+Here's the simplified shell script to automate the process of generating the build files, building the project, and running the executable.
+
+1. Create the script file:
+```bash
+touch build_and_run.sh
+```
+
+2. Edit the script file:
+```bash
+nano build_and_run.sh
+```
+
+3. Paste the script into the file and save it.
+```sh
+#!/bin/bash
+
+# Step 2: Generate the Build Files Using CMake
+cmake ..
+
+# Step 3: Build the Project
+cmake --build .
+
+# Running the Executable
+./MyExecutable
+```
+
+4. Make the script executable:
+```bash
+chmod +x build_and_run.sh
+```
+
+5. Run the script:
+```bash
+./build_and_run.sh
+```
+
+This script will perform the required steps to build and run your project automatically. Ensure that you run this script inside the build directory of your project.
+
 ## Using the Timer Class
 ### Profiling Functions
 
@@ -66,6 +105,8 @@ void myFunction() {
     // Function implementation
 }
 ```
+
+
 
 ## Conclusion
 This project demonstrates how to use a custom profiling class to measure and log the execution time of functions in a C++ program. The Timer class provides detailed profiling information, which can be invaluable for performance analysis and optimization.
