@@ -1,5 +1,6 @@
 #include <thread> // Includes the library for std::this_thread::sleep_for
 #include <chrono> // Includes the library for std::chrono::milliseconds
+#include "Timer.h" // Includes the Timer class for profiling
 
 /**
  * @brief Puts the current thread to sleep for a specified duration.
@@ -8,6 +9,7 @@
  * using std::this_thread::sleep_for and std::chrono::milliseconds.
  */
 void testFunction() {
+    PROFILE_FUNCTION(); // Profiles the execution time of this function
     std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Puts the current thread to sleep for 100 milliseconds
 }
 
@@ -20,6 +22,7 @@ void testFunction() {
  * @return int Returns 0 to indicate successful completion of the program.
  */
 int main() {
+    PROFILE_FUNCTION(); // Profiles the execution time of the main function
     testFunction(); // Calls the testFunction
     return 0; // Returns 0 to indicate that the program terminated successfully
 }

@@ -8,5 +8,8 @@ project(MyProject VERSION 1.0)
 set(CMAKE_CXX_STANDARD 11)
 set(CMAKE_CXX_STANDARD_REQUIRED True)
 
+# Include the header files directory
+include_directories(include)
+
 # Add the executable target
-add_executable(MyExecutable main.cpp)
+add_executable(MyExecutable src/main.cpp)
