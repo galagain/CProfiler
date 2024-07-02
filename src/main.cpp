@@ -1,7 +1,7 @@
 #include <thread> // Includes the library for std::this_thread::sleep_for
 #include <chrono> // Includes the library for std::chrono::milliseconds
 #include <vector> // Includes the library for std::vector
-#include "Timer.h" // Includes the Timer class for profiling
+#include <iostream>
 
 class Calculator {
 public:
@@ -13,8 +13,9 @@ public:
      * @param numbers A vector of integers.
      * @return int The sum of the integers.
      */
-    int computeSum(const std::vector<int>& numbers) {
-        PROFILE_FUNCTION(); // Profiles the execution time of this function
+    int computeSum(const std::vector<int>& numbers) 
+    
+    {
         int sum = 0;
         for (int number : numbers) {
             sum += number;
@@ -29,7 +30,6 @@ public:
      * @return int The product of the integers.
      */
     int computeProduct(const std::vector<int>& numbers) {
-        PROFILE_FUNCTION(); // Profiles the execution time of this function
         int product = 1;
         for (int number : numbers) {
             product *= number;
@@ -44,8 +44,7 @@ public:
  * This function pauses the execution of the current thread for 100 milliseconds
  * using std::this_thread::sleep_for and std::chrono::milliseconds.
  */
-void testFunction() {
-    PROFILE_FUNCTION(); // Profiles the execution time of this function
+void testFunction()             {
     std::this_thread::sleep_for(std::chrono::milliseconds(100)); // Puts the current thread to sleep for 100 milliseconds
 }
 
@@ -55,8 +54,8 @@ void testFunction() {
  * @param n The number of elements to generate.
  * @return std::vector<int> A vector filled with integers from 1 to n.
  */
-std::vector<int> generateNumbers(int n) {
-    PROFILE_FUNCTION(); // Profiles the execution time of this function
+std::vector<int> generateNumbers(int n) 
+{
     std::vector<int> numbers;
     for (int i = 1; i <= n; ++i) {
         numbers.push_back(i);
@@ -65,7 +64,6 @@ std::vector<int> generateNumbers(int n) {
 }
 
 int main() {
-    PROFILE_FUNCTION_TO_FILE(); // Profiles the execution time of the main function and logs to file
 
     // Test the sleep function
     testFunction();

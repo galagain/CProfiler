@@ -107,6 +107,45 @@ void myFunction() {
 ```
 
 
+## Using the Python Script to Add Profiling Macros
+
+A Python script is provided to automatically add profiling macros to your C++ source files. The script scans all .cpp and .h files in a specified directory, inserts the #include "Timer.h" directive if not present, and adds the PROFILE_FUNCTION or PROFILE_FUNCTION_TO_FILE macro at the beginning of each function.
+
+### Running the Script
+
+The script uses default values for the directory and macro type but allows customization through command-line arguments.
+
+### Default Usage
+By default, the script processes the ./src directory and adds the PROFILE_FUNCTION macro:
+
+```bash
+python add_profiling_macro.py
+```
+
+### Customizing the Directory and Macro Type
+You can specify a different directory and/or macro type using the following options:
+
+- `-d` or `--directory`: The path to the directory to be processed (default: `./src`).
+- `-m` or `--macro`: The type of profiling macro to add (`PROFILE_FUNCTION` or `PROFILE_FUNCTION_TO_FILE`, default: `PROFILE_FUNCTION`).
+
+### Example Commands
+1. Process a different directory:
+
+```bash
+python add_profiling_macro.py -d ./other_directory
+```
+
+2. Use PROFILE_FUNCTION_TO_FILE instead of PROFILE_FUNCTION:
+
+```bash
+python add_profiling_macro.py -m PROFILE_FUNCTION_TO_FILE
+```
+
+3. Specify both a different directory and a different macro type:
+
+```bash
+python add_profiling_macro.py -d ./other_directory -m PROFILE_FUNCTION_TO_FILE
+```
 
 ## Conclusion
 This project demonstrates how to use a custom profiling class to measure and log the execution time of functions in a C++ program. The Timer class provides detailed profiling information, which can be invaluable for performance analysis and optimization.
