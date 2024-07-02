@@ -65,7 +65,7 @@ std::vector<int> generateNumbers(int n) {
 }
 
 int main() {
-    PROFILE_FUNCTION(); // Profiles the execution time of the main function
+    PROFILE_FUNCTION_TO_FILE(); // Profiles the execution time of the main function and logs to file
 
     // Test the sleep function
     testFunction();
